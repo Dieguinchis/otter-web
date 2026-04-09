@@ -1,0 +1,39 @@
+/* ══ WORLD MAP COMPONENT ══ */
+.world-map-container {
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+}
+
+.world-map-svg {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Country Borders */
+.country-path {
+  fill: var(--surface);
+  stroke: var(--border-subtle);
+  stroke-width: 0.8px;
+  transition: fill 0.3s ease;
+  vector-effect: non-scaling-stroke;
+}
+
+[data-theme='dark'] .country-path {
+  fill: rgba(255, 255, 255, 0.02);
+  stroke: rgba(255, 255, 255, 0.08);
+}
+
+.country-path:hover {
+  fill: rgba(124, 58, 237, 0.08); /* slight primary tint on hover */
+}
+
+/* Ensure the glowing paths look vibrant */
+.world-map-svg path[stroke] {
+  filter: drop-shadow(0 0 4px var(--primary-light));
+}

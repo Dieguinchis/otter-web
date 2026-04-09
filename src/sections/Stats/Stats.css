@@ -1,0 +1,24 @@
+/* ══ STATS BAND ══ */
+.stats-band {
+  background: var(--bg);
+  padding: 3rem 1.5rem;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+.stats-inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+.stat-item { text-align: center; }
+.stat-value {
+  display: block;
+  font-size: 2.8rem; font-weight: 900;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+.stat-label { display: block; font-size: .875rem; color: var(--text3); margin-top: 4px; font-weight: 500; }
+
+@media (max-width: 700px) {
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-value { font-size: 2.2rem; }
+}
