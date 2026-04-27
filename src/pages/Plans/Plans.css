@@ -1,0 +1,39 @@
+.hero-noise {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+}
+
+/* ══ SHARED GLOW CONTEXT ══ */
+.pricing-glow-context {
+  position: relative;
+  width: 100%;
+  overflow: visible;
+  padding-bottom: 2rem;
+}
+
+/* Conic Aurora Sweep (The "Expanded" Hero feel) */
+.pricing-glow-context::before {
+  content: "";
+  position: absolute;
+  top: -15%;
+  left: -50%;
+  width: 200%;
+  height: 130%;
+  background: conic-gradient(
+    from 180deg at 50% 50%, 
+    rgba(124, 58, 237, 0) 0deg, 
+    rgba(88, 28, 135, 0.02) 140deg, 
+    rgba(124, 58, 237, 0.12) 180deg, 
+    rgba(88, 28, 135, 0.02) 220deg, 
+    rgba(124, 58, 237, 0) 360deg
+  );
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(80px);
+}
+

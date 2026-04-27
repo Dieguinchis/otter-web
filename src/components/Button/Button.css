@@ -1,165 +1,140 @@
 /* ══════════════════════════════════════════════
-   BUTTON COMPONENT
+   REFACTORED BUTTON SYSTEM
    ══════════════════════════════════════════════ */
 
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   font-family: var(--font);
-  font-weight: 600;
-  border-radius: var(--radius-full);
-  border: none;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.2s var(--ease-out);
+  transition: all 0.3s ease;
   text-decoration: none;
   white-space: nowrap;
-}
-.btn:hover {
-  transform: translateY(-2px);
+  border: none;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
 }
 
-/* ── Sizes ── */
-.btn-sm { padding: 0.5rem 1rem; font-size: 0.85rem; }
-.btn-md { padding: 0.75rem 1.75rem; font-size: 0.95rem; }
-.btn-lg { padding: 1rem 2.2rem; font-size: 1.05rem; }
-.btn-nav-size { padding: 0.55rem 1.35rem; font-size: 0.875rem; }
-
-/* ── Variants ── */
-.btn-primary {
-  background: var(--gradient-primary);
+/* ── Primary Button (Uiverse Premium Style) ── */
+.button-primary {
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.8rem 2.2rem;
+  border: 2px solid #7c3aed;
+  border-radius: 9999px;
+  /* Pill shape */
+  background: transparent;
   color: #ffffff;
-  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-}
-.btn-primary:hover {
-  box-shadow: var(--shadow-primary);
-}
-
-.btn-secondary {
-  background: var(--surface);
-  color: var(--text);
-  border: 1px solid var(--border-subtle) !important;
-  box-shadow: var(--shadow-sm);
-}
-.btn-secondary:hover {
-  border-color: rgba(124, 58, 237, 0.2) !important;
-  box-shadow: var(--shadow-md);
-  color: var(--primary);
+  box-shadow:
+    0 0 0 1px rgba(124, 58, 237, 0.1),
+    0 4px 20px rgba(124, 58, 237, 0.2);
 }
 
-.btn-ghost {
-  background: transparent;
-  color: var(--text2);
-}
-.btn-ghost:hover {
-  background: var(--bg-alt);
-  color: var(--text);
-}
-
-.btn-nav-ghost {
-  background: transparent;
-  color: var(--text2);
-}
-.btn-nav-ghost:hover {
-  background: var(--bg-alt);
-  color: var(--text);
-}
-/* White transparent ghost button for dark nav areas */
-.btn-ghost-white {
-  background: transparent;
-  color: rgba(255, 255, 255, 0.9);
-}
-.btn-ghost-white:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
+.button-primary::before {
+  transition: 0.5s all ease;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  right: 50%;
+  bottom: 0;
+  opacity: 0;
+  content: '';
+  background-color: #7c3aed;
+  z-index: -1;
 }
 
-/* ── Animated Button (Uiverse) ── */
-.animated-button {
+.button-primary:hover,
+.button-primary:focus {
+  color: white;
+  box-shadow:
+    0 0 30px rgba(124, 58, 237, 0.5),
+    0 10px 40px rgba(124, 58, 237, 0.3);
+}
+
+.button-primary:hover::before,
+.button-primary:focus::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+.button-primary:active {
+  transform: scale(0.95);
+}
+
+.button-primary svg {
+  transition: transform 0.3s, stroke 0.3s;
+}
+
+.button-primary:hover svg {
+  transform: translateX(4px);
+  stroke: white;
+}
+
+/* ── Navbar Button Style (Animated Bar) ── */
+.button-navbar {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 4px;
-  padding: 8px 36px;
-  border-color: transparent;
-  font-size: 16px;
-  background-color: inherit;
+  gap: 8px;
+  padding: 8px 32px;
+  font-size: 14px;
+  background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%);
   border-radius: 100px;
-  font-weight: 600;
-  color: var(--primary);
-  box-shadow: 0 0 0 2px var(--primary);
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-  text-decoration: none;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.4);
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.animated-button svg {
-  position: absolute;
-  width: 24px;
-  fill: var(--primary);
-  z-index: 9;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+.button-navbar .circle {
+  display: none;
+  /* Removed the expansion effect as we now have a solid background */
 }
 
-.animated-button .arr-1 {
-  right: 16px;
-}
-
-.animated-button .arr-2 {
-  left: -25%;
-}
-
-.animated-button .circle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 20px;
-  height: 20px;
-  background-color: var(--primary);
-  border-radius: 50%;
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-.animated-button .text {
+.button-navbar .text {
   position: relative;
   z-index: 1;
-  transform: translateX(-12px);
-  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-.animated-button:hover {
-  box-shadow: 0 0 0 12px transparent;
+.button-navbar:hover {
   color: #ffffff;
-  border-radius: 12px;
+  box-shadow: 0 0 30px rgba(124, 58, 237, 0.6);
+  transform: translateY(-2px);
+  filter: brightness(1.1);
 }
 
-.animated-button:hover .arr-1 {
-  right: -25%;
-}
-
-.animated-button:hover .arr-2 {
-  left: 16px;
-}
-
-.animated-button:hover .text {
-  transform: translateX(12px);
-}
-
-.animated-button:hover svg {
-  fill: #ffffff;
-}
-
-.animated-button:active {
+.button-navbar:active {
   transform: scale(0.95);
-  box-shadow: 0 0 0 4px var(--primary);
 }
 
-.animated-button:hover .circle {
-  width: 220px;
-  height: 220px;
-  opacity: 1;
+/* ── Secondary Button ── */
+.button-secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  font-size: 13px;
+  letter-spacing: 1px;
+  padding: 0.6rem 1.6rem;
+}
+
+.button-secondary:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.button-secondary:active {
+  transform: scale(0.95);
+}
+
+.button-secondary svg {
+  width: 16px;
+  height: 16px;
 }

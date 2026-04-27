@@ -1,0 +1,184 @@
+.comparison-section {
+  background: transparent;
+  position: relative;
+  z-index: 10;
+}
+
+.table-wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.82rem;
+  min-width: 780px;
+}
+
+/* ── Headers ── */
+.comparison-table thead tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.comparison-table th {
+  padding: 0.9rem 1.4rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.col-feature { 
+  width: 25%; 
+  text-align: left !important;
+}
+
+/* ── Plan Header Pills ── */
+.col-plan span {
+  display: inline-block;
+  padding: 0.35rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.78rem;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.th-plan-pup span {
+  background: rgba(167, 139, 250, 0.12); /* Purple-ish */
+  color: #c4b5fd;
+}
+
+.th-plan-river span {
+  background: rgba(6, 182, 212, 0.12); /* Cyan-ish */
+  color: #67e8f9;
+}
+
+.th-plan-ocean span {
+  background: rgba(16, 185, 129, 0.12); /* Green-ish */
+  color: #6ee7b7;
+}
+
+/* ── Cells ── */
+.comparison-table tbody tr {
+  transition: background 0.2s;
+}
+
+.comparison-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.comparison-table td {
+  padding: 0.75rem 1.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.45);
+  vertical-align: middle;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.cell-feature {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85) !important;
+  text-align: left !important;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cell-val {
+  border-left: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Categories ── */
+.row-category td {
+  padding: 0.6rem 1.4rem !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  user-select: none;
+  text-align: left !important;
+}
+
+.category-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 1.2px;
+}
+
+.category-chevron {
+  width: 14px;
+  height: 14px;
+  opacity: 0.4;
+  transition: transform 0.3s ease;
+}
+
+.row-category.collapsed .category-chevron {
+  transform: rotate(-90deg);
+}
+
+/* ── Markers & Badges ── */
+.cell-ok { color: #10b981; }
+.cell-no { color: rgba(255, 255, 255, 0.15); }
+
+.cell-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.cell-badge--outline {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.cell-badge--blue {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+}
+/* ══ BACKGROUND EFFECTS ══ */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-glow--bottom {
+  position: absolute;
+  bottom: -300px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 1400px;
+  height: 600px;
+  background: radial-gradient(ellipse at center, rgba(124, 58, 237, 0.3) 0%, rgba(124, 58, 237, 0.1) 40%, transparent 70%);
+  filter: blur(80px);
+  z-index: 1;
+  opacity: 0;
+}
+
+.app-ready .hero-glow--bottom {
+  animation: bloatGlowBottom 2.5s ease-out forwards;
+}
+
+@keyframes bloatGlowBottom {
+  0% { opacity: 0; transform: translateX(-50%) scale(0.5); }
+  100% { opacity: 1; transform: translateX(-50%) scale(1); }
+}

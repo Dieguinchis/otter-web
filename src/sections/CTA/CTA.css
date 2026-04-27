@@ -1,36 +1,148 @@
-/* ══ CTA ══ */
-.cta-section {
+.cta {
   position: relative;
-  padding: 7rem 1.5rem;
-  text-align: center;
-  overflow: hidden;
-  background: var(--gradient-soft);
+  background-color: transparent;
+  padding: 8rem 1.5rem;
+  overflow: visible;
 }
-.cta-bg { position: absolute; inset: 0; z-index: 0; }
-.cta-blob {
-  position: absolute;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 70%);
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  animation: pulseGlow 5s ease-in-out infinite;
-}
-.cta-blob-2 {
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
-  top: 30%; left: 70%;
-  animation-delay: -2.5s;
-}
-.cta-inner { position: relative; z-index: 1; }
-.cta-title {
-  font-size: clamp(2.2rem, 4vw, 3.5rem);
-  font-weight: 900; margin-bottom: 1rem;
-  color: var(--text);
-}
-.cta-sub { font-size: 1.1rem; color: var(--text2); margin-bottom: 2.5rem; }
-.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
-@media (max-width: 480px) {
-  .cta-actions { flex-direction: column; align-items: center; }
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.cta-glow {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.6;
+}
+
+.cta-glow--1 {
+  top: 10%;
+  width: 60%;
+  height: 60%;
+  background: radial-gradient(circle at center, rgba(124, 58, 237, 0.25) 0%, transparent 70%);
+}
+
+.cta-glow--2 {
+  bottom: 0%;
+  width: 50%;
+  height: 40%;
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+}
+
+.cta-inner {
+  padding: 5rem 3rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 40px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.3),
+    inset 0 0 20px rgba(124, 58, 237, 0.05);
+}
+
+
+.cta-accent {
+  background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-contact-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.cta-contact-label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.45);
+  font-weight: 500;
+}
+
+.cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.cta-contact-links {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cta-contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  padding: 0.6rem 1.25rem;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  cursor: pointer;
+}
+
+.cta-contact-link svg {
+  width: 28px;
+  height: 28px;
+}
+
+/* Individual Hover States */
+.cta-whatsapp:hover {
+  color: #25D366;
+  background: rgba(37, 211, 102, 0.08);
+  border-color: rgba(37, 211, 102, 0.2);
+  transform: translateY(-3px);
+}
+
+.cta-instagram:hover {
+  color: #E4405F;
+  background: rgba(228, 64, 95, 0.08);
+  border-color: rgba(228, 64, 95, 0.2);
+  transform: translateY(-3px);
+}
+
+.cta-email:hover {
+  color: #EA4335;
+  background: rgba(234, 67, 53, 0.08);
+  border-color: rgba(234, 67, 53, 0.2);
+  transform: translateY(-3px);
+}
+
+/* Animations (Reuse project standards) */
+.reveal.visible .animate-up {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .cta { padding: 4rem 1.25rem; }
+  .cta-inner { padding: 4rem 1.5rem; border-radius: 30px; }
+  .cta-title br, .cta-sub br { display: none; }
+  .cta-trust-items { flex-direction: column; gap: 0.5rem; text-align: center; }
 }

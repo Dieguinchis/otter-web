@@ -1,12 +1,3 @@
-/* ══════════════════════════════════════════════
-   FAQ COMPONENT (Preguntas Frecuentes)
-   ══════════════════════════════════════════════ */
-
-.faq-section {
-  background: var(--bg);
-  padding: 6rem 0;
-}
-
 .faq-inner {
   max-width: 800px;
   margin: 0 auto;
@@ -89,12 +80,12 @@
 }
 
 .faq-item.open .faq-answer-wrapper {
-  max-height: 300px; /* High enough for longest text */
+  max-height: 300px;
 }
 
 .faq-answer {
   padding-bottom: 1.5rem;
-  padding-right: 2rem; /* Don't collide with the toggle icon column */
+  padding-right: 2rem;
   color: var(--text2);
   line-height: 1.6;
   font-size: 1rem;
@@ -102,7 +93,17 @@
 
 /* Responsive */
 @media (max-width: 768px) {
-  .faq-section { padding: 4rem 1.5rem; }
-  .faq-question { font-size: 1.05rem; padding: 1.25rem 0; }
-  .faq-answer { font-size: 0.95rem; padding-right: 0;}
+  .faq-section {
+    padding: 4rem 1.5rem;
+  }
+
+  .faq-question {
+    font-size: 1.05rem;
+    padding: 1.25rem 0;
+  }
+
+  .faq-answer {
+    font-size: 0.95rem;
+    padding-right: 0;
+  }
 }

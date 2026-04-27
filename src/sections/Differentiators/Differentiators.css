@@ -1,103 +1,238 @@
-/* ══ DIFFERENTIATORS ══ */
 .diff-section {
-  background: var(--bg-alt);
+  position: relative;
+  overflow: hidden;
+  padding: 7rem 1.5rem 6rem;
 }
 
-.diff-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
+/* ── Container ── */
+.diff-container {
+  position: relative;
+  z-index: 1;
 }
 
-.diff-list {
-  list-style: none;
-  margin-top: 1.5rem;
+/* ── Header ── */
+.diff-header {
+  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: .75rem;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.diff-item {
+.diff-sub {
+  max-width: 620px;
+  text-align: center;
+}
+
+/* ═══════════════════════════════════════
+   COMPARISON TABLE
+   ═══════════════════════════════════════ */
+
+
+
+/* ── Table Container ── */
+.diff-table-container {
+  overflow-x: auto;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.diff-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  min-width: 780px;
+  font-size: 0.82rem;
+}
+
+/* ── Headers ── */
+.diff-table thead tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.diff-table th {
+  padding: 0.9rem 1.4rem;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.55);
+  background: transparent;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+}
+
+.diff-table th:first-child {
+  width: 22%;
+}
+
+.diff-table th:nth-child(2) {
+  width: 39%;
+}
+
+.diff-table th:nth-child(3) {
+  width: 39%;
+}
+
+/* ── "Métodos tradicionales" header pill ── */
+.diff-th-comp {
+  color: rgba(255, 255, 255, 0.55) !important;
+}
+
+.diff-th-comp span {
+  display: inline-block;
+  background: rgba(190, 80, 70, 0.15);
+  color: #e08080;
+  padding: 0.3rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+/* ── "Con OtterTask" header pill ── */
+.diff-th-otter span {
+  display: inline-block;
+  background: rgba(16, 185, 129, 0.12);
+  color: #5ee0b0;
+  padding: 0.3rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+/* ── Cells ── */
+.diff-table tbody tr {
+  transition: background 0.2s;
+}
+
+.diff-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.diff-table td {
+  padding: 0.75rem 1.4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: rgba(255, 255, 255, 0.45);
+  vertical-align: top;
+  line-height: 1.55;
+}
+
+.diff-table tr:last-child td {
+  border-bottom: none;
+}
+
+.diff-td-feature {
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85) !important;
+  width: 22%;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.diff-td-comp {
+  width: 39%;
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.diff-td-otter {
+  width: 39%;
+}
+
+/* ── Category Row ── */
+.diff-row-category td {
+  padding: 0.6rem 1.4rem !important;
+  background: rgba(255, 255, 255, 0.035) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  user-select: none;
+}
+
+.diff-row-category .diff-category-content {
+  justify-content: space-between;
+}
+
+.diff-category-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.diff-category-chevron {
+  width: 16px;
+  height: 16px;
+  opacity: 0.5;
+  transition: transform 0.3s ease;
+}
+
+.diff-row-category.collapsed .diff-category-chevron {
+  transform: rotate(-90deg);
+}
+
+.diff-row-category:first-of-type td {
+  border-top: none;
+}
+
+.diff-table tbody .diff-row-category:hover {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+.diff-category-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.7) !important;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 1.2px;
+}
+
+.diff-category-icon {
+  font-size: 0.95rem;
+}
+
+/* ── Content format ── */
+.diff-cell-content {
   display: flex;
   align-items: flex-start;
-  gap: .75rem;
-  font-size: .95rem;
-  color: var(--text2);
+  gap: 0.5rem;
+  line-height: 1.55;
+  font-size: 0.82rem;
 }
 
-.diff-check {
+.diff-cell-content svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.diff-cell-content.ok svg {
   color: #10b981;
-  font-weight: 700;
-  flex-shrink: 0;
-  margin-top: 2px;
-  width: 20px;
-  height: 20px;
-  background: rgba(16, 185, 129, 0.08);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: .7rem;
 }
 
-.diff-feature-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
+.diff-cell-content.no svg {
+  color: #f87171;
 }
 
-.diff-mini-card {
-  background: var(--surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius);
-  padding: 1.1rem;
-  display: flex;
-  align-items: center;
-  gap: .75rem;
-  transition: all .3s var(--ease-out);
-  cursor: default;
+.diff-cell-content.warn svg {
+  color: #fbbf24;
 }
 
-.diff-mini-card:hover {
-  border-color: rgba(124, 58, 237, 0.2);
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-}
-
-.diff-mini-icon {
-  font-size: 1.3rem;
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  background: var(--gradient-soft);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.diff-mini-title {
-  font-size: .85rem;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.diff-mini-sub {
-  font-size: .75rem;
-  color: var(--text3);
-  margin-top: 1px;
-}
-
-@media (max-width: 900px) {
-  .diff-inner {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .diff-section {
+    padding: 5rem 1.25rem 4rem;
   }
-}
 
-@media (max-width: 700px) {
-  .diff-feature-cards {
-    grid-template-columns: 1fr;
+  .diff-comparison {
+    margin-top: 3.5rem;
+  }
+
+  .diff-table th,
+  .diff-table td {
+    padding: 0.65rem 0.9rem;
   }
 }

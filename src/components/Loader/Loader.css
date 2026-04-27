@@ -1,0 +1,67 @@
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Smooth exit fade */
+  transition: opacity 0.5s ease-out, visibility 0.5s;
+}
+
+.loader-wrapper.fade-out {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-content {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.loader-logo {
+  width: 84px;
+  height: 84px;
+  object-fit: contain;
+  /* Start centered: half of text width (~140px) + half margin (~10px) */
+  transform: translateX(115px) scale(0);
+  animation: 
+    logoEntrance 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards,
+    slideLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards 1s;
+}
+
+.loader-text {
+  display: flex;
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-left: 20px;
+  letter-spacing: -0.02em;
+}
+
+.loader-text span {
+  opacity: 0;
+  transform: translateY(15px);
+  filter: blur(10px);
+  /* Letters pop in individually */
+  animation: letterEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: inline-block;
+}
+
+@keyframes logoEntrance {
+  0% { transform: translateX(115px) scale(0); opacity: 0; filter: brightness(2); }
+  100% { transform: translateX(115px) scale(1); opacity: 1; filter: brightness(1); }
+}
+
+@keyframes slideLeft {
+  0% { transform: translateX(115px); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes letterEntrance {
+  0% { opacity: 0; transform: translateY(15px); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+

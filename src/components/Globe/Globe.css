@@ -1,0 +1,67 @@
+.globe-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.globe-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+}
+.globe-canvas:active {
+  cursor: grabbing;
+}
+
+/* ── City Tooltip ── */
+.globe-tooltip {
+  position: absolute;
+  pointer-events: none;
+  background: rgba(5, 7, 15, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 0.5px solid rgba(139, 119, 240, 0.4);
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-family: var(--font);
+  color: #fff;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-100%);
+  transition: opacity 0.15s ease;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.tt-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tt-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+
+.tt-city {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.tt-details {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: #8892b0;
+}
+
+.tt-sep {
+  opacity: 0.3;
+}

@@ -1,0 +1,190 @@
+.extra-section {
+  position: relative;
+  padding: 5rem 1.5rem 8rem;
+  overflow: hidden;
+}
+
+.extra-container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ── Header ── */
+.extra-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 4rem;
+}
+
+.extra-sub {
+  max-width: 650px;
+  text-align: center;
+}
+
+/* ── Grid ── */
+.extra-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* ── Card ── */
+.extra-card {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  cursor: pointer;
+  animation: fadeUp 0.6s var(--ease-out) both;
+}
+
+/* Image Wrap */
+.extra-img-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.extra-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+  opacity: 0.45;
+  filter: grayscale(50%) contrast(1.1) brightness(0.9);
+}
+
+.extra-img-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(3, 0, 6, 1) 0%,
+    rgba(3, 0, 6, 0.85) 40%,
+    rgba(3, 0, 6, 0.15) 100%
+  );
+  transition: all 0.5s ease;
+}
+
+/* Hover effect on image */
+.extra-card:hover .extra-img {
+  transform: scale(1.1) rotate(1deg);
+  opacity: 0.85;
+  filter: grayscale(0%) contrast(1.2) brightness(1.1);
+}
+
+.extra-card:hover .extra-img-overlay {
+  background: linear-gradient(
+    to top,
+    rgba(3, 0, 6, 1) 0%,
+    rgba(3, 0, 6, 0.9) 60%,
+    rgba(3, 0, 6, 0.3) 100%
+  );
+}
+
+/* Content Area */
+.extra-content {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.extra-icon-box {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  transition: transform 0.3s var(--ease-spring);
+}
+
+.extra-icon {
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.extra-card:hover .extra-icon-box {
+  transform: scale(1.1) translateY(-5px);
+  background: color-mix(in srgb, var(--accent) 25%, transparent);
+  box-shadow: 0 10px 20px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+.extra-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 0;
+  transition: transform 0.4s ease;
+}
+
+/* Expandable Description */
+.extra-desc-wrap {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), margin 0.4s ease;
+  margin-top: 0;
+}
+
+.extra-desc {
+  overflow: hidden;
+  font-size: 0.85rem;
+  color: var(--text2);
+  line-height: 1.6;
+  margin: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease 0.1s;
+}
+
+.extra-card:hover .extra-desc-wrap {
+  grid-template-rows: 1fr;
+  margin-top: 0.75rem;
+}
+
+.extra-card:hover .extra-desc {
+  opacity: 1;
+}
+
+/* Glowing Border on Hover */
+.extra-border-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg);
+  border: 2px solid transparent;
+  z-index: 5;
+  pointer-events: none;
+  transition: border-color 0.4s ease;
+}
+
+.extra-card:hover .extra-border-glow {
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .extra-grid {
+    grid-template-columns: 1fr;
+  }
+  .extra-section {
+    padding: 3rem 1rem 5rem;
+  }
+  .extra-desc-wrap {
+    grid-template-rows: 1fr;
+    margin-top: 0.75rem;
+  }
+  .extra-desc {
+    opacity: 1;
+  }
+}

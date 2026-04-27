@@ -4,31 +4,37 @@ import './Button.css'
 
 export default function Button({ 
   children, 
-  variant = 'primary', 
-  size = 'md', 
+  variant = 'button-primary', 
   className = '', 
   href, 
   to, 
+  size = 'default',
   ...props 
 }) {
-  const isAnimated = variant === 'animated';
-  const btnClass = isAnimated ? `animated-button ${className}` : `btn btn-${variant} btn-${size} ${className}`;
+  const btnClass = `btn ${variant} ${size !== 'default' ? 'btn-' + size : ''} ${className}`;
 
   const renderContent = () => {
-    if (isAnimated) {
+    if (variant === 'button-navbar') {
       return (
         <>
-          <svg viewBox="0 0 24 24" className="arr-2" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
-          </svg>
           <span className="text">{children}</span>
           <span className="circle"></span>
-          <svg viewBox="0 0 24 24" className="arr-1" xmlns="http://www.w3.org/2000/svg">
-            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+        </>
+      )
+    }
+
+    if (variant === 'button-primary') {
+      return (
+        <>
+          {children}
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
           </svg>
         </>
-      );
+      )
     }
+
     return children;
   };
 

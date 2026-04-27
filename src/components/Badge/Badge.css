@@ -1,31 +1,30 @@
-/* ══ BADGE COMPONENT ══ */
 .badge {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
   padding: 0.35rem 1.1rem;
   border-radius: var(--radius-full);
-  font-size: 0.8rem;
+  font-size: .85rem;
   font-weight: 600;
-  letter-spacing: .04em;
+  letter-spacing: .12em;
   text-transform: uppercase;
   font-family: var(--font);
-}
-
-.badge-primary {
+  transition: all 0.3s ease;
+  overflow: hidden;
   background: var(--primary-faint);
-  color: var(--primary);
-  border: 1px solid rgba(124, 58, 237, 0.15);
+  color: var(--primary-light);
+  border: 1px solid rgba(124, 58, 237, 0.35);
+  margin-bottom: .32rem;
 }
 
-.badge-green {
-  background: rgba(16, 185, 129, 0.08);
-  color: #059669;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+.badge-content {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
 }
 
-.badge-amber {
-  background: rgba(245, 158, 11, 0.08);
-  color: #d97706;
-  border: 1px solid rgba(245, 158, 11, 0.2);
+.badge-icon-wrap svg {
+  width: 22px;
+  height: 22px;
+  display: block;
 }

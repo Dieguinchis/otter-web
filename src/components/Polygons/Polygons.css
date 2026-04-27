@@ -1,0 +1,111 @@
+/* Base shape for polygons */
+.polygons-wrapper {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+
+  /* CSS Variables for easy customization */
+  --poly-left-rotation: 45deg;
+  --poly-right-rotation: -45deg;
+  --poly-radius: 40px;
+  --poly-opacity-idle: 0.8;
+  --poly-opacity-active: 1;
+  --poly-scale-idle: 1;
+  --poly-scale-active: 1.03;
+  --poly-color-base: rgba(124, 58, 237, 0.5);
+  --poly-color-glow: rgba(124, 58, 237, 0.8);
+  --poly-breathe-distance: 8px;
+}
+
+.poly {
+  position: absolute;
+  border-radius: var(--poly-radius);
+  mix-blend-mode: screen; 
+  opacity: 1;
+}
+
+.poly::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border-radius: inherit;
+  z-index: -1;
+}
+
+/* Left side polygons */
+.poly--left-1 {
+  border-top: 1px solid var(--poly-color-base);
+  -webkit-mask-image: linear-gradient(to left, black 10%, transparent 100%);
+  mask-image: linear-gradient(to left, black 10%, transparent 100%);
+  z-index: 1;
+}
+.poly--left-1::before {
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.05) 0%, var(--poly-color-glow) 100%);
+  box-shadow: inset -20px 0 60px rgba(124, 58, 237, 0.4);
+}
+
+.poly--left-2 {
+  border-right: 1px solid var(--poly-color-base);
+  -webkit-mask-image: linear-gradient(to left, black 10%, transparent 100%);
+  mask-image: linear-gradient(to left, black 10%, transparent 100%);
+  z-index: 2;
+}
+.poly--left-2::before {
+  background: linear-gradient(90deg, rgba(124, 58, 237, 0.02) 20%, rgba(124, 58, 237, 0.6) 100%);
+  box-shadow: inset -15px 0 40px rgba(124, 58, 237, 0.25);
+}
+
+/* Right side polygons */
+.poly--right-1 {
+  border-top: 1px solid var(--poly-color-base);
+  -webkit-mask-image: linear-gradient(to right, black 10%, transparent 100%);
+  mask-image: linear-gradient(to right, black 10%, transparent 100%);
+  z-index: 1;
+}
+.poly--right-1::before {
+  background: linear-gradient(-90deg, rgba(124, 58, 237, 0.02) 20%, rgba(124, 58, 237, 0.6) 100%);
+  box-shadow: inset 15px 0 40px rgba(124, 58, 237, 0.25);
+}
+
+.poly--right-2 {
+  border-left: 1px solid var(--poly-color-base);
+  -webkit-mask-image: linear-gradient(to right, black 10%, transparent 100%);
+  mask-image: linear-gradient(to right, black 10%, transparent 100%);
+  z-index: 2;
+}
+.poly--right-2::before {
+  background: linear-gradient(-90deg, rgba(124, 58, 237, 0.05) 0%, var(--poly-color-glow) 100%);
+  box-shadow: inset 20px 0 60px rgba(124, 58, 237, 0.4);
+}
+
+/* Animations using variables */
+.poly--left-1, .poly--left-2, .poly--right-1, .poly--right-2 {
+  opacity: 0;
+}
+
+.app-ready .poly--left-1 { animation: slidePolyLeft 2s ease-out forwards, breathePolyLeft 4s ease-in-out 2s infinite alternate; }
+.app-ready .poly--left-2 { animation: slidePolyLeft 2.2s ease-out forwards 0.2s, breathePolyLeft 4s ease-in-out 2.2s infinite alternate; }
+.app-ready .poly--right-1 { animation: slidePolyRight 2s ease-out forwards 0.1s, breathePolyRight 4.5s ease-in-out 2.1s infinite alternate; }
+.app-ready .poly--right-2 { animation: slidePolyRight 2.3s ease-out forwards 0.3s, breathePolyRight 4.5s ease-in-out 2.6s infinite alternate; }
+
+@keyframes slidePolyLeft {
+  0% { opacity: 0; transform: translateX(-100px) translateY(-50%) rotate(var(--poly-left-rotation)); }
+  100% { opacity: var(--poly-opacity-idle); transform: translateX(0) translateY(-50%) rotate(var(--poly-left-rotation)); }
+}
+
+@keyframes slidePolyRight {
+  0% { opacity: 0; transform: translateX(100px) translateY(-50%) rotate(var(--poly-right-rotation)); }
+  100% { opacity: var(--poly-opacity-idle); transform: translateX(0) translateY(-50%) rotate(var(--poly-right-rotation)); }
+}
+
+@keyframes breathePolyLeft {
+  0% { opacity: var(--poly-opacity-idle); transform: translateX(0) translateY(-50%) rotate(var(--poly-left-rotation)) scale(var(--poly-scale-idle)); }
+  100% { opacity: var(--poly-opacity-active); transform: translateX(var(--poly-breathe-distance)) translateY(-50%) rotate(var(--poly-left-rotation)) scale(var(--poly-scale-active)); }
+}
+
+@keyframes breathePolyRight {
+  0% { opacity: var(--poly-opacity-idle); transform: translateX(0) translateY(-50%) rotate(var(--poly-right-rotation)) scale(var(--poly-scale-idle)); }
+  100% { opacity: var(--poly-opacity-active); transform: translateX(calc(-1 * var(--poly-breathe-distance))) translateY(-50%) rotate(var(--poly-right-rotation)) scale(var(--poly-scale-active)); }
+}
+
